@@ -1,0 +1,14 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "username": "admin",
+      "admin": true
+    },
+    {
+      "id": 2,
+      "username": "test",
+      "admin": false
+    }
+  ]
+}

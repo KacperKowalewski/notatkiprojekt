@@ -1,0 +1,31 @@
+<form #noteForm="ngForm" (ngSubmit)="onEditNote(noteForm.value)">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <input 
+                type="text"
+                class="form-control input-sm" 
+                value="{{title}}" 
+                id="title"
+                required
+                ngModel
+                name="title"
+                >
+            </mat-card-title>
+            <mat-card-subtitle>Data utworzenia: </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <textarea 
+            class="form-control" 
+            id="content"
+            required
+            ngModel
+            name="content" 
+            >{{content}}</textarea> 
+        </mat-card-content>
+    <mat-card-actions>
+      <button class="btn btn-outline-success">Zapisz</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

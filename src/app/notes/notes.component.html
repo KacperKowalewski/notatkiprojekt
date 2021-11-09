@@ -1,0 +1,32 @@
+<div>
+    <button class="btn btn-dark float-right">Dodaj notatke</button>
+      <h3><b>Twoje Notatki</b></h3>
+    <mat-card (click)="show = !show">
+        <mat-card-header>
+            <span>123</span>
+            
+        </mat-card-header>
+        <mat-card-content>
+            <p *ngIf="show">{{ content }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="btn btn-danger btn-sm" disabled>Usun</button>
+            <a href="/notes/edit"><button class="btn btn-primary btn-sm">Edytuj</button></a>
+        </mat-card-actions>
+            
+    </mat-card>
+    <mat-card (click)="show = !show">
+        <mat-card-header>
+            <span>123</span>
+            
+        </mat-card-header>
+        <mat-card-content>
+            <p *ngIf="show">{{ content }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="btn btn-danger btn-sm" disabled>Usun</button>
+            <a href="/notes/edit"><button class="btn btn-primary btn-sm">Edytuj</button></a>
+        </mat-card-actions>
+            
+    </mat-card>
+</div>

@@ -1,0 +1,9 @@
+mat-card{
+    margin-top: 5px;
+}
+mat-card:hover{
+    background-color: grey;
+}
+a:hover {
+    text-decoration: none;
+  }
