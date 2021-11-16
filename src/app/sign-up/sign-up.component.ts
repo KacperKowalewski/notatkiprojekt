@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 
-import { singUpService } from './sing-up.service'
+import { signUpService } from './sign-up.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ import { singUpService } from './sing-up.service'
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private singUpService: singUpService) { 
+  constructor(private signUpService: signUpService, private router: Router) { 
 
   }
 
@@ -22,8 +23,11 @@ export class SignUpComponent implements OnInit {
   onSubmit(form: NgForm) {
     const username = form.value.username;
 
-    this.singUpService.singup(username, this.admin).subscribe(resData => {
-      console.log(resData);
+    this.signUpService.singup(username, this.admin).subscribe(resData => {
+      alert("Użytkownik dodany!");
+      this.router.navigate(['sing-in']);
+    },err => {
+      alert("Coś poszło nie tak");
     });
 
     form.reset;

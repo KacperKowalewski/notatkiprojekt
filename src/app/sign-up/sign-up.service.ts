@@ -1,14 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-interface singUpResponseData{
-    id: string;
-    username: string;
-    admin: string;
-}
-
 @Injectable({providedIn: 'root'})
-export class singUpService {
+export class signUpService {
     constructor(private http: HttpClient){
 
     }

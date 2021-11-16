@@ -1,8 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { Observable } from 'rxjs';
-
-import { SignInResponseData, SignInService } from './sign-in.service';
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -12,23 +11,35 @@ import { SignInResponseData, SignInService } from './sign-in.service';
   })
 export class SignInComponent implements OnInit {
 
-  constructor(private signInService: SignInService) { }
+  public signInForm!: FormGroup;
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+    this.signInForm = this.formBuilder.group({
+      username:['']
+    })
   }
   
-   onSubmit(form: NgForm) {
-    const username = form.value.username;
-    let loginObs: Observable<SignInResponseData>;
-
-    loginObs = this.signInService.login(username);
-
-    loginObs.subscribe(
-      resData => {
-        console.log(resData);
+  signin(){
+    this.http.get<any>('http://localhost:3000/accounts')
+    .subscribe(res=>{
+      const user = res.find((a:any)=>{
+        return a.username === this.signInForm.value.username
+      });
+      if(user){
+        alert("Zalogowaleś się!");
+        this.signInForm.reset();
+        this.router.navigate(['notes']);
+      }else{
+        alert("Nie ma użytkownika o podanej nazwie");
       }
-    )
-    form.reset;
+    },err=>{
+      alert("Coś poszło nie tak");
+    })
+  }
+
+   onSubmit() {
     
+  
   }
 }

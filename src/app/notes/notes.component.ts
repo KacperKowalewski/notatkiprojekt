@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Note } from './note.model';
+
 
 @Component({
   selector: 'app-notes',
@@ -7,14 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesComponent implements OnInit {
   
+  notes: Note[] = []
   
-  constructor() { }
+  constructor(private http: HttpClient) { 
+    
+  }
+  
+  show(){
+    
+  }
+  
 
-  public show = false;
-  public content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dolor tellus, finibus efficitur mattis at, malesuada eu quam. Phasellus imperdiet eu quam et congue.';
   
 
   ngOnInit(): void {
+    this.http.get('http://localhost:3000/notes').subscribe((notes: any) => {
+      console.log('notes', notes)
+      this.notes = notes
+    })
   }
   
 }
